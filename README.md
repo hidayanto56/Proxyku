@@ -1,2 +1,2 @@
-# TuProxy
+# Proxyku
 Android proxy server

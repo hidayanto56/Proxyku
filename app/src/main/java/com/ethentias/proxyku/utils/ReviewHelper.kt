@@ -1,4 +1,4 @@
-package com.tustudio.tuproxy.utils
+package com.ethentias.proxyku.utils
 
 import android.app.Activity
 import com.google.android.play.core.review.ReviewManagerFactory
@@ -8,7 +8,7 @@ import com.google.android.play.core.review.ReviewManagerFactory
  * Quota is enforced by Play; calls outside quota are silently ignored.
  */
 object ReviewHelper {
-    private const val PREF = "tuproxy_prefs"
+    private const val PREF = "proxyku_prefs"
     private const val KEY_LAUNCHES = "launches"
     private val PROMPT_AT = setOf(3, 10, 25)
 

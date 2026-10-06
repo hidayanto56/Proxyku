@@ -1,10 +1,10 @@
-package com.tustudio.tuproxy.tile
+package com.ethentias.proxyku.tile
 
 import android.os.Build
 import android.service.quicksettings.Tile
 import android.service.quicksettings.TileService
-import com.tustudio.tuproxy.engine.ProxyEngine
-import com.tustudio.tuproxy.services.ProxyService
+import com.ethentias.proxyku.engine.ProxyEngine
+import com.ethentias.proxyku.services.ProxyService
 
 /**
  * Quick Settings tile: one tap toggles all three proxies.

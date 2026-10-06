@@ -1,4 +1,4 @@
-package com.tustudio.tuproxy.services
+package com.ethentias.proxyku.services
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -11,11 +11,11 @@ import android.content.pm.ServiceInfo
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
-import com.tustudio.tuproxy.MainActivity
-import com.tustudio.tuproxy.engine.ConnectionLog
-import com.tustudio.tuproxy.engine.ProxyEngine
-import com.tustudio.tuproxy.engine.TrafficStats
-import com.tustudio.tuproxy.utils.formatBytes
+import com.ethentias.proxyku.MainActivity
+import com.ethentias.proxyku.engine.ConnectionLog
+import com.ethentias.proxyku.engine.ProxyEngine
+import com.ethentias.proxyku.engine.TrafficStats
+import com.ethentias.proxyku.utils.formatBytes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -50,12 +50,12 @@ data class ProxyUiState(
 class ProxyService : Service() {
 
     companion object {
-        const val ACTION_UPDATE = "com.tustudio.tuproxy.action.UPDATE"
-        const val ACTION_STOP_ALL = "com.tustudio.tuproxy.action.STOP_ALL"
+        const val ACTION_UPDATE = "com.ethentias.proxyku.action.UPDATE"
+        const val ACTION_STOP_ALL = "com.ethentias.proxyku.action.STOP_ALL"
         const val EXTRA_TYPE = "type"
         const val EXTRA_ENABLED = "enabled"
 
-        private const val CHANNEL_ID = "tuproxy_channel"
+        private const val CHANNEL_ID = "proxyku_channel"
         private const val NOTIFICATION_ID = 101
         private const val STOPPED_NOTIFICATION_ID = 102
         private const val HISTORY_MAX = 60
@@ -172,7 +172,7 @@ class ProxyService : Service() {
             val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             nm.createNotificationChannel(
                 NotificationChannel(
-                    CHANNEL_ID, "TuProxy status", NotificationManager.IMPORTANCE_LOW
+                    CHANNEL_ID, "Proxyku status", NotificationManager.IMPORTANCE_LOW
                 ).apply { description = "Local proxy status and live traffic" }
             )
         }
@@ -200,7 +200,7 @@ class ProxyService : Service() {
         val names = running.sorted().joinToString("+") { it.uppercase() }
         val text = "↓ ${formatBytes(rxRate)}/s  ↑ ${formatBytes(txRate)}/s — tap to manage"
         return NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("TuProxy [$names] is running")
+            .setContentTitle("Proxyku [$names] is running")
             .setContentText(text)
             .setSmallIcon(android.R.drawable.ic_menu_share)
             .setContentIntent(contentIntent())
@@ -213,7 +213,7 @@ class ProxyService : Service() {
     private fun showStoppedNotification() {
         val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle("TuProxy is stopped")
+            .setContentTitle("Proxyku is stopped")
             .setContentText("All proxies are off — tap to start")
             .setSmallIcon(android.R.drawable.ic_menu_share)
             .setContentIntent(contentIntent())

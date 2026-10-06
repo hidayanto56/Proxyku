@@ -1,4 +1,4 @@
-package com.tustudio.tuproxy.ui
+package com.ethentias.proxyku.ui
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 /** Palet dark elegan yang agak terang: slate lembut, teks kontras tinggi. */
-private val TuProxyDark = darkColorScheme(
+private val ProxykuDark = darkColorScheme(
     primary = Color(0xFF4CC38A),
     onPrimary = Color(0xFF04120A),
     secondary = Color(0xFF7AA2F7),
@@ -25,6 +25,6 @@ private val TuProxyDark = darkColorScheme(
 )
 
 @Composable
-fun TuProxyTheme(content: @Composable () -> Unit) {
-    MaterialTheme(colorScheme = TuProxyDark, content = content)
+fun ProxykuTheme(content: @Composable () -> Unit) {
+    MaterialTheme(colorScheme = ProxykuDark, content = content)
 }

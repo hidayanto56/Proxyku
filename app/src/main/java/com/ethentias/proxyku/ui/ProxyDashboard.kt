@@ -1,4 +1,4 @@
-package com.tustudio.tuproxy.ui
+package com.ethentias.proxyku.ui
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
@@ -53,35 +53,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.tustudio.tuproxy.R
-import com.tustudio.tuproxy.billing.BillingManager
-import com.tustudio.tuproxy.engine.ConnEntry
-import com.tustudio.tuproxy.engine.ConnectionLog
-import com.tustudio.tuproxy.engine.ProxyEngine
-import com.tustudio.tuproxy.services.ProxyService
-import com.tustudio.tuproxy.utils.IPUtils
-import com.tustudio.tuproxy.utils.formatBytes
+import com.ethentias.proxyku.R
+import com.ethentias.proxyku.engine.ConnEntry
+import com.ethentias.proxyku.engine.ConnectionLog
+import com.ethentias.proxyku.engine.ProxyEngine
+import com.ethentias.proxyku.services.ProxyService
+import com.ethentias.proxyku.utils.IPUtils
+import com.ethentias.proxyku.utils.formatBytes
 
 private val Green = Color(0xFF3FB950)
 private val Red = Color(0xFFF85149)
 
 /** Full privacy-policy text. Hosted live; same URL goes in Play Console. */
-const val PRIVACY_POLICY_URL = "https://github.com/hidayanto56/TuProxy/blob/main/PRIVACY_POLICY.md"
-
-/** Donations stay hidden until products are created + quota allows. */
-private const val ENABLE_DONATIONS = false
+const val PRIVACY_POLICY_URL = "https://github.com/hidayanto56/Proxyku/blob/main/PRIVACY_POLICY.md"
 
 @Composable
 fun ProxyDashboard() {
     val context = LocalContext.current
     val clipboard = LocalClipboardManager.current
-    val activity = context as? android.app.Activity
     val state by ProxyService.uiState.collectAsState()
     val connections by ConnectionLog.flow.collectAsState()
-    val pro by BillingManager.pro.collectAsState()
     var ips by remember { mutableStateOf<List<String>>(emptyList()) }
     var showPrivacy by remember { mutableStateOf(false) }
-    var showDonate by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         ips = IPUtils.getAvailableIPv4Addresses(context)
@@ -96,13 +89,8 @@ fun ProxyDashboard() {
         android.widget.Toast.makeText(context, "Copied: $addr", android.widget.Toast.LENGTH_SHORT)
             .show()
     }
-    fun toast(msg: String) {
-        android.widget.Toast.makeText(context, msg, android.widget.Toast.LENGTH_LONG).show()
-    }
 
-    Scaffold(
-        bottomBar = { if (!pro) AdBanner() },
-    ) { innerPadding ->
+    Scaffold { innerPadding ->
         Surface(
             modifier = Modifier
                 .fillMaxSize()
@@ -123,19 +111,6 @@ fun ProxyDashboard() {
                     Header(anyOn = anyOn)
                     if (showPrivacy) {
                         PrivacyDialog(onDismiss = { showPrivacy = false })
-                    }
-                    if (showDonate) {
-                        DonateDialog(
-                            onDismiss = { showDonate = false },
-                            onPick = { productId ->
-                                showDonate = false
-                                if (activity != null) {
-                                    BillingManager.donate(activity, productId, ::toast)
-                                } else {
-                                    toast("Purchase unavailable right now.")
-                                }
-                            },
-                        )
                     }
 
                     if (wide) {
@@ -203,24 +178,6 @@ fun ProxyDashboard() {
                         TextButton(onClick = { showPrivacy = true }) {
                             Text("Privacy Policy", fontSize = 12.sp)
                         }
-                        if (ENABLE_DONATIONS) {
-                            TextButton(onClick = { showDonate = true }) {
-                                Text("Support", fontSize = 12.sp)
-                            }
-                        }
-                        if (!pro) {
-                            TextButton(
-                                onClick = {
-                                    if (activity != null) {
-                                        BillingManager.buyRemoveAds(activity, ::toast)
-                                    } else {
-                                        toast("Purchase unavailable right now.")
-                                    }
-                                }
-                            ) {
-                                Text("Remove ads", fontSize = 12.sp)
-                            }
-                        }
                     }
                 }
             }
@@ -236,12 +193,12 @@ private fun Header(anyOn: Boolean) {
     ) {
         Image(
             painter = painterResource(R.drawable.logo_app),
-            contentDescription = "TuProxy logo",
+            contentDescription = "Proxyku logo",
             modifier = Modifier.size(46.dp).clip(CircleShape),
         )
         Spacer(Modifier.width(10.dp))
         Column(Modifier.weight(1f)) {
-            Text("TuProxy", fontSize = 22.sp, fontWeight = FontWeight.Bold)
+            Text("Proxyku", fontSize = 22.sp, fontWeight = FontWeight.Bold)
             Text(
                 "Simple Proxy Server",
                 fontSize = 12.sp,
@@ -466,10 +423,9 @@ private fun PrivacyDialog(onDismiss: () -> Unit) {
         title = { Text("Privacy Policy", fontWeight = FontWeight.Bold) },
         text = {
             Text(
-                "TuProxy relays network traffic locally on your device and " +
-                    "collects no personal data, with no accounts and no analytics of its own.\n\n" +
-                    "Ads (AdMob by Google) may collect the advertising ID and device " +
-                    "info to serve and measure ads.\n\n" +
+                "Proxyku relays network traffic locally on your device and " +
+                    "collects no personal data: no accounts, no ads, no analytics, " +
+                    "no in-app purchases.\n\n" +
                     "The local proxy sees the hosts you connect to while it is ON; " +
                     "nothing is uploaded anywhere. Turn all toggles off to stop serving.",
                 fontSize = 13.sp,
@@ -482,41 +438,6 @@ private fun PrivacyDialog(onDismiss: () -> Unit) {
             TextButton(onClick = onDismiss) { Text("Close") }
         },
     )
-}
-
-@Composable
-private fun DonateDialog(onDismiss: () -> Unit, onPick: (String) -> Unit) {
-    AlertDialog(
-        onDismissRequest = onDismiss,
-        title = { Text("Support TuProxy", fontWeight = FontWeight.Bold) },
-        text = {
-            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                Text(
-                    "TuProxy is free. A one-time tip keeps it alive — you can tip again anytime.",
-                    fontSize = 13.sp,
-                )
-                Spacer(Modifier.height(4.dp))
-                DonateTierButton("☕ Small tip", BillingManager.PRODUCT_DONATE_SMALL, onPick)
-                DonateTierButton("🍱 Medium tip", BillingManager.PRODUCT_DONATE_MEDIUM, onPick)
-                DonateTierButton("🚀 Large tip", BillingManager.PRODUCT_DONATE_LARGE, onPick)
-                Text(
-                    "Prices are set in your local currency by Google Play.",
-                    fontSize = 11.sp,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        },
-        confirmButton = {
-            TextButton(onClick = onDismiss) { Text("Close") }
-        },
-    )
-}
-
-@Composable
-private fun DonateTierButton(label: String, productId: String, onPick: (String) -> Unit) {
-    TextButton(onClick = { onPick(productId) }) {
-        Text(label, fontSize = 14.sp, fontWeight = FontWeight.Medium)
-    }
 }
 
 @Composable

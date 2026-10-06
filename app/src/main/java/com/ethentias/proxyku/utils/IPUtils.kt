@@ -1,4 +1,4 @@
-package com.tustudio.tuproxy.utils
+package com.ethentias.proxyku.utils
 
 import android.content.Context
 import android.net.wifi.WifiManager

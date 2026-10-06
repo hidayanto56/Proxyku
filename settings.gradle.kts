@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "TuProxy"
+rootProject.name = "Proxyku"
 include(":app")

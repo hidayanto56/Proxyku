@@ -1,4 +1,4 @@
-# AGENT.md — TuProxy
+# AGENT.md — Proxyku
 
 Single-page Android app (minSdk 28 / Android 9) yang menyalakan proxy
 HTTP, HTTPS (CONNECT), dan SOCKS5 langsung di perangkat. Host `0.0.0.0`,

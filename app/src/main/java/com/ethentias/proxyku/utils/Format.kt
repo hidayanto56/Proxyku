@@ -1,4 +1,4 @@
-package com.tustudio.tuproxy.utils
+package com.ethentias.proxyku.utils
 
 fun formatBytes(bytes: Long): String = when {
     bytes >= 1_073_741_824L -> "%.2f GB".format(bytes / 1_073_741_824.0)

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TuProxy</string>
+    <string name="app_name">Proxyku</string>
     <string name="proxy_service_description">Serves local HTTP/HTTPS/SOCKS5 proxy</string>
-    <!-- AdMob production IDs. Same IDs go in the AdMob console (app linked to Play listing). -->
-    <string name="admob_app_id">ca-app-pub-4298199558809105~4371418403</string>
-    <string name="admob_banner_id">ca-app-pub-4298199558809105/1930369151</string>
 </resources>

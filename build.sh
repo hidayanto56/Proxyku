@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# TuProxy build script — bungkus ./gradlew + cek prasyarat.
+# Proxyku build script — bungkus ./gradlew + cek prasyarat.
 # Pakai: ./build.sh [debug|release|bundle|clean|install]   (default: debug)
 set -euo pipefail
 
@@ -9,7 +9,7 @@ MODE="${1:-debug}"
 APK_DEBUG="app/build/outputs/apk/debug/app-debug.apk"
 APK_RELEASE="app/build/outputs/apk/release/app-release.apk"
 AAB_RELEASE="app/build/outputs/bundle/release/app-release.aab"
-APK_RELEASE_APK="/Users/admin/Downloads/TuProxy.apk"
+APK_RELEASE_APK="/Users/admin/Downloads/Proxyku.apk"
 
 # 1. JDK 17+
 if ! command -v java >/dev/null 2>&1; then

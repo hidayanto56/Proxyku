@@ -1,12 +1,13 @@
-# Privacy Policy — TuProxy
+# Privacy Policy — Proxyku
 
-Last updated: 2026-09-19. Contact: use the developer contact email shown
-on this app's Google Play listing, or the Issues page of the TuProxy
+Last updated: 2026-10-06. Contact: use the developer contact email shown
+on this app's Google Play listing, or the Issues page of the Proxyku
 GitHub repository.
 
 ## Summary
-TuProxy is a local proxy server that runs entirely on your device. We collect
-no personal data, require no account, and include no analytics of our own.
+Proxyku is a free local proxy server that runs entirely on your device.
+We collect no personal data, require no account, show no ads, offer no
+purchases, and include no analytics of our own.
 
 ## Data we collect
 None. The app does not create accounts, does not track you, and does not
@@ -19,24 +20,11 @@ operate the proxy and show the traffic meter, chart, and recent-connections
 list. This stays on your device and is erased when the proxy stops. Turn all
 toggles off to stop serving.
 
-## Advertising (AdMob)
-The app shows banner ads served by Google AdMob. AdMob may collect and process
-device identifiers (including the Android advertising ID), IP address, and
-ad-interaction data to serve, personalize (where consented), and measure ads,
-under Google's Privacy Policy (https://policies.google.com/privacy) and
-Google Play Services terms. You can reset or opt out of personalized ads in
-Android Settings → Privacy → Ads.
-
-## Purchases
-An optional one-time "Remove ads" purchase is processed entirely by Google Play;
-we receive no payment details.
-
 ## Permissions and why
 - INTERNET / ACCESS_NETWORK_STATE — operate the local proxy.
 - FOREGROUND_SERVICE (+ DATA_SYNC) — keep the proxy running with a status notification.
 - WAKE_LOCK — keep relaying during long transfers.
 - POST_NOTIFICATIONS — running/stopped status notifications (Android 13+).
-- AD_ID — advertising ID for AdMob (Android 13+).
 
 ## Children
 Not directed at children under 13.

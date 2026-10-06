@@ -1,4 +1,4 @@
-package com.tustudio.tuproxy.engine
+package com.ethentias.proxyku.engine
 
 import java.io.ByteArrayOutputStream
 import java.io.InputStream

@@ -1,4 +1,4 @@
-package com.tustudio.tuproxy
+package com.ethentias.proxyku
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -8,22 +8,17 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.tustudio.tuproxy.ui.ProxyDashboard
-import com.tustudio.tuproxy.ui.TuProxyTheme
-import com.tustudio.tuproxy.billing.BillingManager
-import com.tustudio.tuproxy.utils.ReviewHelper
-import com.google.android.gms.ads.MobileAds
+import com.ethentias.proxyku.ui.ProxyDashboard
+import com.ethentias.proxyku.ui.ProxykuTheme
+import com.ethentias.proxyku.utils.ReviewHelper
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // AdMob: async init; banner degrades to a slim placeholder when offline.
-        MobileAds.initialize(this) {}
-        BillingManager.init(this)
         requestNotificationPermission()
         setContent {
-            TuProxyTheme {
+            ProxykuTheme {
                 ProxyDashboard()
             }
         }
@@ -31,7 +26,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        BillingManager.refreshPro()
         ReviewHelper.onAppForeground(this)
     }
 

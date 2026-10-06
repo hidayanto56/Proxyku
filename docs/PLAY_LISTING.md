@@ -1,13 +1,14 @@
-# TuProxy — Play store listing (English)
+# Proxyku — Play store listing (English)
 
 ## App title (≤ 30 chars)
-TuProxy: Proxy Server
+Proxyku: Proxy Server
 
 ## Short description (≤ 80 chars)
-Simple local HTTP, HTTPS & SOCKS5 proxy with live traffic meter.
+Free local HTTP, HTTPS & SOCKS5 proxy with live traffic meter.
 
 ## Full description
-TuProxy turns your Android device into a simple local proxy server.
+Proxyku turns your Android device into a simple local proxy server.
+100% free, no ads, no purchases, no account.
 
 FEATURES
 • HTTP proxy (:8080), HTTPS CONNECT (:8443) and SOCKS5 (:1080)
@@ -24,9 +25,8 @@ port. Great for debugging HTTP traffic, testing apps behind a proxy, or
 learning how proxies work.
 
 PRIVACY
-No accounts, no analytics of our own, nothing uploaded. Traffic is relayed
-locally on your device. The free version shows ads (AdMob); a one-time
-purchase removes them. Full policy linked below.
+No accounts, no ads, no analytics, nothing uploaded. Traffic is relayed
+locally on your device. Full policy linked below.
 
 Note: this is a plain relay proxy, not a VPN and not an anonymity service.
 
@@ -40,5 +40,5 @@ Tools. Tags: proxy server, socks5, http proxy, network tool, developer tools.
 4. Stopped/idle state.
 
 ## Feature graphic (1024 × 500)
-Dark slate background (#1A2230), logo-lite icon left, "TuProxy" + tagline
-"Simple local proxy with live traffic" right.
+Dark slate background (#1A2230), P logo left, "Proxyku" + tagline
+"Simple local proxy" right.
